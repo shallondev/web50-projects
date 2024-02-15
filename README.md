@@ -86,7 +86,7 @@ pip3 install django
 ```
 
 ### Specification
-- The following SQL models are used: Listing, Categorie, Watchlist, Bid, Comment.
+- The following SQL models are used: Listing, Category, Watchlist, Bid, Comment.
     - All models are registered with django-admin and can be manipulated within the web application.
 - Active Listing
     - Displays all listings that are active in that bids can be made and no winner has been decided.
@@ -117,3 +117,47 @@ pip3 install django
 
 ### Awknowldgements
 This project used distribution code provided by CS50 https://cs50.harvard.edu/web/2020/projects/2/commerce
+
+## Mail
+Front-end design for an email client built with JavaScript.
+
+### Introduction
+For this project the entire back-end was written by CS50's team. The goal of this project was to write a front-end in JavaScript that makes API calls to the backend to provide the information needed render and provide the functionality of an email client like google's gmail.
+
+### Usage
+```bash
+cd mail-shallondev
+python3 manage.py runserver
+```
+
+### Requirments
+python3, django
+
+```bash
+pip3 install django
+```
+
+### Specification
+- Note: my end of the project was completed moslty in inbox.js
+- Compose
+    - Renders form to compose a new email including to whom the email concerns, subject, and body.
+    - Uses a POST request to send email to the backend.
+ - Inbox
+    - Shows incoming emails ordered by latest to oldest with relevant information.
+    - Read and unread emails are distinguished by color using 'Put' requests.
+    - Clicking on a email brings you to a more detailed view.
+        - If a use selects the reply button then the composition form will be rendered with 'To', 'Subject', and 'Body' already having the needed information inside. The subject contains 'Re' and the body contains the date and email account of the original sender to claify this email is a reply.
+        - If the user archives the email then it will be sent to the archived emails.
+- Sent
+    - Shows all sent emails by current user.
+- Archived
+    - Shows all emails marked as archived. These emails can be unarchived.
+
+### Awknowledgements
+This project used distribution code provided by CS50 https://cs50.harvard.edu/web/2020/projects/3/mail
+
+## TODO
+- Add table of contents
+- Add gifs displaying projects
+- Correct any grammer errors
+- Add social network project
