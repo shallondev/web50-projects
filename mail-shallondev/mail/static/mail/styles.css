@@ -1,0 +1,17 @@
+textarea {
+    min-height: 400px;
+}
+
+/* Email styles */
+.email-item {
+    border: 1px solid black;
+}
+.email-item span{
+    color: gray;
+    float: right;
+}
+.email-item:hover{
+    text-decoration: underline;
+    color: purple;
+    cursor: pointer;
+}
