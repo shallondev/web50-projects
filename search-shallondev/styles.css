@@ -1,0 +1,89 @@
+.top-right-div, .top-right-links {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+}
+.top-right-div a, .top-right-links a {
+  margin-right: 10px;
+}
+
+.top-right-links a {
+  color: dimgray;
+  text-decoration: none;
+}
+.top-right-links a:hover {
+  text-decoration: underline;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.left {
+  float: left;
+  margin-right: 10px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.bottom input {
+  margin-left: 10px;
+}
+
+.google {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+@keyframes flashing {
+  0% {
+    color: red;
+  }
+  25% {
+    color: yellow;
+  }
+  50% {
+    color: blue;
+  }
+  75% {
+    color: green;
+  }
+  100% {
+    color: red;
+  }
+}
+.flashing-text {
+  font-size: 2em;
+  animation: flashing 6s infinite;
+}
+
+.left-margin {
+  margin-left: 50px;
+}
+
+.top-margin {
+  margin-top: 50px;
+}
+
+.top-margin-small {
+  margin-top: 10px;
+}
+
+#adv-red {
+  color: red;
+}
+
+form input[type=text] {
+  max-width: 300px;
+}
+
+
+
+/*# sourceMappingURL=styles.css.map */

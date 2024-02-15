@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Search</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <header>
+        <!--Links to other search-->
+        <nav class="top-right-links">
+            <a href="index.html">Google Search</a>
+        </nav>
+    </header>
+    <main class="left-margin">
+        <header class="top-margin" id="adv-red">Advanced Search</header>
+        <div class="top-margin">
+            <form action="https://google.com/search">
+                <p>Find pages with...</p>
+                <div class="bottom">
+                    <div class="left">
+                        <p>all these words.</p>
+                    </div>
+                    <input type="text" class="rounded-lg form-control" name="as_q" placeholder="Search...">
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        <p>this exact word or phrase.</p>
+                    </div>
+                    <input type="text" class="rounded-lg form-control" name="as_epq" placeholder="Search...">
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        <p>any of these words.</p>
+                    </div>
+                    <input type="text" class="rounded-lg form-control" name="as_oq" placeholder="Search...">
+                </div>
+                <div class="bottom">
+                    <div class="left">
+                        <p>none of these words.</p>
+                    </div>
+                    <input type="text" class="rounded-lg form-control" name="as_eq" placeholder="Search...">
+                </div>
+                <div class="top-margin">
+                    <input type="submit" class="rounded-lg btn btn-primary" value="Advanced Search">
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

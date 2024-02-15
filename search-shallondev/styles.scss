@@ -1,0 +1,103 @@
+// Variables
+$spacing: 10px;
+$large_spacing: 50px;
+
+// Style for top right divs
+.top-right-div {
+    position: absolute;
+    top: $spacing;
+    right: $spacing;
+    padding: $spacing;
+    
+    a {
+        margin-right: $spacing;
+    }
+}
+
+// Extend right divs style to include black color for links.
+.top-right-links {
+    @extend .top-right-div;
+
+    a {
+        color: dimgray;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Style for basic search bar
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+// Keep elements side by side
+.left {
+    float: left;
+    margin-right: $spacing;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing;
+    
+    input {
+        margin-left: $spacing;
+    }
+}
+
+.google {
+    margin-bottom: $large_spacing;
+    text-align: center;
+}
+
+@keyframes flashing {
+    0% {
+      color: red;
+    }
+    25% {
+        color: yellow;
+    }
+    50% {
+      color: blue;
+    }
+    75% {
+        color: green;
+    }
+    100% {
+      color: red;
+    }
+  }
+  
+  .flashing-text {
+    font-size: 2em; 
+    animation: flashing 6s infinite; 
+  }
+
+.left-margin {
+    margin-left: $large_spacing;
+}
+
+.top-margin {
+    margin-top: $large_spacing;
+}
+
+.top-margin-small {
+    margin-top: $spacing;
+}
+
+#adv-red {
+    color: red;
+}
+
+form input[type="text"] {
+    max-width: 300px; 
+}
+
+//random code
