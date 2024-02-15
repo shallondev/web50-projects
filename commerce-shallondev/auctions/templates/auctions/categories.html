@@ -1,0 +1,31 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2 class="text-info mb-4">{{ selected_category }}</h2>
+
+<form method="post" action="{% url 'categories' %}" class="needs-validation" novalidate>
+    {% csrf_token %}
+    {{ category_form }}
+    <br>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<br>
+<div class="row">
+    {% for listing in listings %}
+        {% if listing.is_active %}
+            <div class="">
+                <div class="card">
+                    <img src="{{ listing.image_url }}" class="card-img-top" alt="Item Image" style="width: 400px; height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">{{ listing.title }}</h5>
+                        <a class="nav-link" href="{% url 'listing_page' listing.title %}">View</a>
+                        <h6 class="card-subtitle mb-2 text-muted">Current Price: ${{ listing.bids.amount }}</h6>
+                        <p class="card-subtitle mb-2 text-muted">Owner: {{ listing.created_by }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

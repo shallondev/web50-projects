@@ -1,0 +1,65 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 class="text-info mb-4">{{ listing.title }}</h2>
+    <h2 class="text-success mb-4">{{ bid_success_message }}</h2>
+    <h2 class="text-danger mb-4">{{ bid_error_message }}</h2>
+    {% if winner %}
+        <h2 class="text-success mb-4">{{ winner }} has won this auction!</h2>
+    {% endif %} 
+    <h2 class="text-danger mb-4">{{ bid_error_message }}</h2>
+
+    <p class="mb-2 text-dark">Current Price: ${{ listing.bids.amount }}</h6>
+    <p class="mb-2 text-dark">Owner: {{ listing.created_by }}</p>
+    <p class="mb-2 text-dark">{{ listing.description }}</p>
+
+    {% if listing.is_active %}
+        {% if user.is_authenticated %}
+            <div class="mb-4">
+                <h3 class="text-info">Place a Bid</h3>
+                <form method="post" action="{% url 'listing_page' listing.title %}" class="form-inline">
+                    {% csrf_token %}
+                    {{ bid_form.as_p }}
+                    <button type="submit" class="btn btn-primary mb-3 ml-2">Submit Bid</button>
+                </form>
+            </div>
+
+            <div class="mb-4">
+                <h3 class="text-info">Watchlist</h3>
+                <form method="post" action="{% url 'listing_page' listing.title %}" class="form-inline">
+                    {% csrf_token %}
+                    {{ watchlist_form.as_p }}
+                    <button type="submit" class="btn btn-success mb-3 ml-2">Update Watchlist</button>
+                </form>
+            </div>
+
+            <div class="mb-4">
+                <h3 class="text-info">Comments</h3>
+                <form method="post" action="{% url 'listing_page' listing.title %}" class="form-inline">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+
+                    <button type="submit" class="btn btn-secondary mb-3 ml-2">Add Comment</button>
+                </form>
+            </div>
+
+            {% if user_is_creator %}
+                <div class="mb-4">
+                    <h3 class="text-danger">Close Auction</h3>
+                    <form method="post" action="{% url 'listing_page' listing.title %}" class="form-inline">
+                        {% csrf_token %}
+                        {{ close_auction_form.as_p }}
+                        <button type="submit" class="btn btn-danger mb-3 ml-2">Close Auction</button>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    <div class="mb-4">
+        <h3 class="text-dark">Comments</h3>
+        {% for comment in listing.comments.all %}
+            <p>{{ comment.text }} - {{ comment.user.username }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

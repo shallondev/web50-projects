@@ -1,0 +1,17 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 class="text-info">Create New Listing</h2>
+
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'create_listing' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ category_form }}
+            <br>
+            <button type="submit" class="btn btn-primary">Create Listing</button>
+        </form>
+    {% else %}
+        <p>Not signed in.</p>
+    {% endif %}
+{% endblock %}
