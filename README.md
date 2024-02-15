@@ -16,6 +16,9 @@ Download and open search-shallondev on your local machine and open index.html in
 - image.html replicates google's image search.
 - advanced.html replicates google's advanced search functionality.
 
+### Awknowldgements
+This project used distribution code provided by CS50 https://cs50.harvard.edu/web/2020/projects/0/search/
+
 ## Wiki
 A online encylcopedia with markdown and django.
 
@@ -41,17 +44,20 @@ pip3 install markdown2
 ### Specification
 - Home
     - Clicking 'Home' will display all article entries that can be rendered by clicking on their title.
-    - Alternatively, articles can be rendered with /wiki/TITLE where TITLE is an exact match of the articles title, otherwise an error page will be rendered.
+    - Alternatively, articles can be rendered with the URL /wiki/TITLE where TITLE is an exact match of the articles title, otherwise an error page will be rendered.
 - Search Bar
-    - The search bar located on the side bar allows users to search articles.
-        - If the query is an exact match to the title of the article then the contents of the article will be rendered.
-        - Otherwise, search results were the query was a substring of the title lower or upper case will be rendered for the user to select.
+    - The search bar located on the side bar allows users to search for articles.
+        - If the query is an exact match to a title of an article then the contents of the article will be rendered.
+        - Otherwise, search results will be rendered where the query was a substring of a article's title.
 - Create New Page
-    - Users can enter a title and content into a form that will be used to create a markdown file when submitted.
-    - The content of the markdown file will then be converted to HTML to it can be rendered as an article.
+    - Users can enter the title and content into a form that will be used to create a markdown file when submitted.
+    - The content of the markdown file will then be converted to HTML so that it can be rendered as an article.
 - Random Page
     - Clicking on 'Random Page' will render a random artcle with its contents.
 - Edit Entry
-    - Selecting 'Edit Entry' while viewing a article will direct to the user to a form with the Title and Content allowed filled with that of the article they are viewing.
+    - Selecting 'Edit Entry' while viewing a article will direct the user to a form with the title and content of that article.
     - The user can change that title and contents of the article.
-    - Submitting the changes will update the rendered HTML content of the article..
+    - Submitting the changes will update the rendered HTML content of the article.
+
+### Awknowldgements
+This project used distribution code provided by CS50 https://cs50.harvard.edu/web/2020/projects/1/wiki/
