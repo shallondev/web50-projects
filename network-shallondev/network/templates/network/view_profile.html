@@ -1,0 +1,118 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <main>
+
+        <h1 class="ml-3">{{ profile.username }}</h1>
+
+        <!-- Followers/Following -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="vertical-box">
+                        <h2>Followers: {{ followers }} Following: {{ following }}</h2>
+                            {% if user.is_authenticated %}
+                                {% if profile.username != user.username %}
+                                    {% if request.user in profile.followers.all %}
+                                    <form action="{% url 'view_profile_follow' poster=profile.username follow='false' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="mt-2">
+                                            <button class="btn btn-primary" type="submit">Unfollow</button>
+                                        </div>  
+                                    </form>
+                                    {% else %}
+                                    <form action="{% url 'view_profile_follow' poster=profile.username follow='true' %}" method="POST">
+                                        {% csrf_token %}
+                                        <div class="mt-2">
+                                            <button class="btn btn-primary" type="submit">Follow</button>
+                                        </div>  
+                                    </form>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Posts -->
+        {% for post in page_obj %}
+        <div class="container-fluid mt-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="vertical-box">
+                        <h2><a href="{% url 'view_profile' post.poster %}">{{ post.poster }}</a></h2>
+                        <p id="postcontent{{ post.id }}">{{ post.content }}</p>
+                        <p>{{ post.date }} Likes: <span id="likes_{{ post.id }}">{{ post.likes.all|length }}</span></p>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user == post.poster %}
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_{{ post.id }}">Edit</button>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal_{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea rows="3" id="textarea_{{ post.id }}" class="form-control" name="content">{{ post.content }}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <form id="postForm">
+                                            {% csrf_token %}
+                                            <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="saveHandler('{{ post.id }}')">Save changes</button>
+                                        </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            {% endif %} 
+                        {% endif %}
+                        {% if request.user.is_authenticated %} 
+                        <form id="likeForm" class="mt-2">
+                            {% csrf_token %}
+                            {% if request.user in post.likes.all %}
+                                <button type="button" class="btn btn-danger" onclick="likeHandler('{{ post.id }}')" id="likeBtn_{{ post.id }}">Unlike</button>
+                            {% else %}
+                                <button type="button" class="btn btn-success" onclick="likeHandler('{{ post.id }}')" id="likeBtn_{{ post.id }}">Like</button>
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Paginator -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-2">
+                <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+                </li>
+                <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                {% endif %}
+                </li>
+            </ul>
+        </nav>
+
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
+{% endblock %}

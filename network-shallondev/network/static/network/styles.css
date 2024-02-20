@@ -1,0 +1,16 @@
+.vertical-box {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: left; 
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: purple
+  }
